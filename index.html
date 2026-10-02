@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HGGMco15 | Dev & CP Portfolio</title>
+    <!-- Font chữ hiện đại từ Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Reset & Variables */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --border-color: #30363d;
+            --accent-color: #58a6ff;
+            --text-main: #c9d1d9;
+            --text-sub: #8b949e;
+            --green-accent: #3fb950;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        /* Header / Hero Section */
+        header {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 30px;
+            margin-bottom: 40px;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: rgba(56, 189, 248, 0.1);
+            color: var(--accent-color);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-family: 'Fira Code', monospace;
+            margin-bottom: 12px;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #ffffff;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: var(--text-sub);
+            font-size: 1.1rem;
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: 45px;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            color: #ffffff;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Tech Stack Tags */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-family: 'Fira Code', monospace;
+            color: var(--accent-color);
+        }
+
+        /* Repositories & Projects Grid */
+        .repo-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 20px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .repo-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-color);
+        }
+
+        .repo-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .repo-title a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .repo-title a:hover {
+            text-decoration: underline;
+        }
+
+        .repo-desc {
+            color: var(--text-sub);
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+        }
+
+        .btn-link {
+            display: inline-block;
+            background-color: #21262d;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .btn-link:hover {
+            background-color: var(--border-color);
+            color: #ffffff;
+        }
+
+        /* Highlight Solution Box */
+        .solution-box {
+            background-color: #090d13;
+            border-left: 3px solid var(--green-accent);
+            padding: 15px 20px;
+            margin-top: 15px;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .solution-box h4 {
+            color: var(--green-accent);
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .solution-box p {
+            font-size: 0.88rem;
+            color: var(--text-sub);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-sub);
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <span class="badge">MDCF.github.io</span>
+            <h1>MDCF</h1>
+            <p>Competitve programming solution</p>
+        </header>
+
+        <!-- Tech Stack -->
+        <section>
+            <h2>💻 Kỹ Năng & Công Cụ</h2>
+            <div class="tags">
+                <span class="tag">Python 3</span>
+                <span class="tag">Algorithms</span>
+                <span class="tag">Codeforces</span>
+                <span class="tag">HTML5 / CSS3</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">Git & GitHub</span>
+                <span class="tag">C++</span>
+            </div>
+        </section>
+
+        <!-- Repositories Section -->
+        <section>
+            <h2>📚 Codeforces Solutions Repository</h2>
+            
+            <!-- GitHub Repository Card -->
+            <div class="repo-card">
+                <div class="repo-title">
+                    <a href="https://github.com/HGGMco15/Codeforces-solution" target="_blank">📦 Codeforces-solution</a>
+                    <span style="color: var(--green-accent); font-size: 0.8rem; font-family: 'Fira Code';">Public</span>
+                </div>
+                <p class="repo-desc">Kho lưu trữ toàn bộ lời giải các bài tập Codeforces được viết tối ưu bằng Python 3,C++. Tự động cập nhật các thuật toán Toán học, Cấu trúc dữ liệu và Tìm kiếm.</p>
+                
+                <a href="https://github.com/HGGMco15/Codeforces-solution" target="_blank" class="btn-link">
+                    🔗 Truy cập Repository trên GitHub ↗
+                </a>
+
+                <!-- Featured Solution Inside Repo -->
+                <div class="solution-box">
+                    <h4>Featured: Codeforces 1624B - Make AP</h4>
+                    <p>Giải quyết bài toán kiểm tra Cấp số cộng bằng thuật toán O(1) Toán học, xử lý triệt để điều kiện chia hết và trường hợp số lẻ (a+c)\2==0.</p>
+                </div>
+            </div>
+        </section>
+        <section>
+            <h2>📚 Leetcode Solutions Repository</h2>
+            
+            <!-- GitHub Repository Card -->
+            <div class="repo-card">
+                <div class="repo-title">
+                    <a href="https://github.com/HGGMco15/Leetcode-Solution" target="_blank">📦 Leetcode-solution</a>
+                    <span style="color: var(--green-accent); font-size: 0.8rem; font-family: 'Fira Code';">Public</span>
+                </div>
+                <p class="repo-desc">Kho lưu trữ toàn bộ lời giải các bài tập Leetcode được viết tối ưu bằng Python 3,C++. Tự động cập nhật các thuật toán Toán học, Cấu trúc dữ liệu và Tìm kiếm.</p>
+                
+                <a href="https://github.com/HGGMco15/Leetcode-solution" target="_blank" class="btn-link">
+                    🔗 Truy cập Repository trên GitHub ↗
+                </a>
+
+            </div>
+        </section>
+        <!-- Dynamic Counter Section -->
+        <section>
+            <h2>🔥 Tiến Độ Lập Trình</h2>
+            <div class="repo-card" style="text-align: center;">
+                <p style="color: var(--text-sub);">Số bài tập đã hoàn thành & commit lên GitHub hôm nay:</p>
+                <h1 id="count" style="font-size: 3rem; color: var(--accent-color); margin: 10px 0; font-family: 'Fira Code', monospace;">0</h1>
+                <button onclick="increase()" class="btn-link" style="cursor: pointer; background-color: var(--accent-color); color: #000; border: none;">
+                    +1 Bài Hoàn Thành
+                </button>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>© HGGMco15 • Powered by GitHub Pages</p>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        let counter = 0;
+        function increase() {
+            counter++;
+            document.getElementById('count').innerText = counter;
+        }
+    </script>
+</body>
+</html>
