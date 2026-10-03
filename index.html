@@ -3,15 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HGGMco15 | Dev & CP Portfolio</title>
-    <!-- Font chữ hiện đại từ Google Fonts -->
+    <title>MDCF | Competitive Programming Portfolio</title>
+    <!-- Font chữ từ Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- PyScript -->
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
     <style>
         /* CSS Reset & Variables */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            scroll-behavior: smooth;
         }
 
         :root {
@@ -25,16 +29,90 @@
         }
 
         body {
-            background-color: var(--bg-color);
+            background: linear-gradient(135deg, #132219 0%, #0d1117 100%);
+            background-attachment: fixed;
             color: var(--text-main);
             font-family: 'Inter', sans-serif;
             line-height: 1.6;
-            padding: 40px 20px;
+            padding-top: 80px;
+            padding-bottom: 40px;
+            transition: background 0.5s ease;
         }
 
+        /* STICKY NAVBAR */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(22, 27, 34, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 850px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 20px;
+        }
+
+        .nav-logo {
+            font-family: 'Fira Code', monospace;
+            font-weight: 700;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-sub);
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .btn-control {
+            background-color: #21262d;
+            color: var(--accent-color);
+            border: 1px solid var(--border-color);
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.82rem;
+            font-family: 'Fira Code', monospace;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-control:hover {
+            background-color: var(--border-color);
+            border-color: var(--accent-color);
+            transform: translateY(-1px);
+        }
+
+        /* MAIN CONTAINER */
         .container {
             max-width: 850px;
             margin: 0 auto;
+            padding: 0 20px;
         }
 
         /* Header / Hero Section */
@@ -71,6 +149,7 @@
         /* Sections */
         section {
             margin-bottom: 45px;
+            scroll-margin-top: 100px;
         }
 
         h2 {
@@ -99,7 +178,7 @@
             color: var(--accent-color);
         }
 
-        /* Repositories & Projects Grid */
+        /* Repositories & Cards */
         .repo-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -190,17 +269,40 @@
 </head>
 <body>
 
+    <!-- STICKY NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">> MDCF</a>
+            <ul class="nav-links">
+                <li><a href="#skills" id="nav-skills">Kỹ Năng</a></li>
+                <li><a href="#codeforces" id="nav-cf">Codeforces</a></li>
+                <li><a href="#leetcode" id="nav-lc">LeetCode</a></li>
+                <li><a href="#progress" id="nav-progress">Tiến Độ</a></li>
+                
+                <!-- Nút Chuyển Ngôn Ngữ -->
+                <li>
+                    <button id="lang-btn" class="btn-control" onclick="toggleLanguage()">🇻🇳 VI</button>
+                </li>
+                
+                <!-- Nút Đổi Nền (PyScript) -->
+                <li>
+                    <button id="theme-btn" class="btn-control" py-click="toggle_theme">🌲 Nền: Rêu</button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
     <div class="container">
-        <!-- Header -->
+        <!-- Header / Hero Section -->
         <header>
-            <span class="badge">MDCF.github.io</span>
+            <span class="badge" id="hero-badge">Trang Cá Nhân Lập Trình</span>
             <h1>MDCF</h1>
-            <p>Competitve programming solution</p>
+            <p id="hero-subtitle">Kho Lời Giải Lập Trình Thi Đấu & Thuật Toán</p>
         </header>
 
-        <!-- Tech Stack -->
-        <section>
-            <h2>💻 Kỹ Năng & Công Cụ</h2>
+        <!-- Tech Stack Section -->
+        <section id="skills">
+            <h2 id="title-skills">💻 Kỹ Năng & Công Cụ</h2>
             <div class="tags">
                 <span class="tag">Python 3</span>
                 <span class="tag">Algorithms</span>
@@ -212,53 +314,52 @@
             </div>
         </section>
 
-        <!-- Repositories Section -->
-        <section>
-            <h2>📚 Codeforces Solutions Repository</h2>
+        <!-- Codeforces Section -->
+        <section id="codeforces">
+            <h2 id="title-cf">📚 Lời Giải Codeforces</h2>
             
-            <!-- GitHub Repository Card -->
             <div class="repo-card">
                 <div class="repo-title">
                     <a href="https://github.com/HGGMco15/Codeforces-solution" target="_blank">📦 Codeforces-solution</a>
-                    <span style="color: var(--green-accent); font-size: 0.8rem; font-family: 'Fira Code';">Public</span>
+                    <span style="color: var(--green-accent); font-size: 0.8rem; font-family: 'Fira Code';" id="status-cf">Công khai</span>
                 </div>
-                <p class="repo-desc">Kho lưu trữ toàn bộ lời giải các bài tập Codeforces được viết tối ưu bằng Python 3,C++. Tự động cập nhật các thuật toán Toán học, Cấu trúc dữ liệu và Tìm kiếm.</p>
+                <p class="repo-desc" id="desc-cf">Kho lưu trữ toàn bộ lời giải các bài tập Codeforces được viết tối ưu bằng Python 3, C++. Tự động cập nhật các thuật toán Toán học, Cấu trúc dữ liệu và Tìm kiếm.</p>
                 
-                <a href="https://github.com/HGGMco15/Codeforces-solution" target="_blank" class="btn-link">
+                <a href="https://github.com/HGGMco15/Codeforces-solution" target="_blank" class="btn-link" id="link-cf">
                     🔗 Truy cập Repository trên GitHub ↗
                 </a>
 
-                <!-- Featured Solution Inside Repo -->
                 <div class="solution-box">
-                    <h4>Featured: Codeforces 1624B - Make AP</h4>
-                    <p>Giải quyết bài toán kiểm tra Cấp số cộng bằng thuật toán O(1) Toán học, xử lý triệt để điều kiện chia hết và trường hợp số lẻ (a+c)\2==0.</p>
+                    <h4 id="title-cf-featured">Nổi bật: Codeforces 1624B - Make AP</h4>
+                    <p id="desc-cf-featured">Giải quyết bài toán kiểm tra Cấp số cộng bằng thuật toán O(1) Toán học, xử lý triệt để điều kiện chia hết và trường hợp số lẻ (a+c)\2==0.</p>
                 </div>
             </div>
         </section>
-        <section>
-            <h2>📚 Leetcode Solutions Repository</h2>
+
+        <!-- LeetCode Section -->
+        <section id="leetcode">
+            <h2 id="title-lc">📚 Lời Giải LeetCode</h2>
             
-            <!-- GitHub Repository Card -->
             <div class="repo-card">
                 <div class="repo-title">
                     <a href="https://github.com/HGGMco15/Leetcode-Solution" target="_blank">📦 Leetcode-solution</a>
-                    <span style="color: var(--green-accent); font-size: 0.8rem; font-family: 'Fira Code';">Public</span>
+                    <span style="color: var(--green-accent); font-size: 0.8rem; font-family: 'Fira Code';" id="status-lc">Công khai</span>
                 </div>
-                <p class="repo-desc">Kho lưu trữ toàn bộ lời giải các bài tập Leetcode được viết tối ưu bằng Python 3,C++. Tự động cập nhật các thuật toán Toán học, Cấu trúc dữ liệu và Tìm kiếm.</p>
+                <p class="repo-desc" id="desc-lc">Kho lưu trữ toàn bộ lời giải các bài tập Leetcode được viết tối ưu bằng Python 3, C++. Tự động cập nhật các thuật toán Toán học, Cấu trúc dữ liệu và Tìm kiếm.</p>
                 
-                <a href="https://github.com/HGGMco15/Leetcode-solution" target="_blank" class="btn-link">
+                <a href="https://github.com/HGGMco15/Leetcode-Solution" target="_blank" class="btn-link" id="link-lc">
                     🔗 Truy cập Repository trên GitHub ↗
                 </a>
-
             </div>
         </section>
+
         <!-- Dynamic Counter Section -->
-        <section>
-            <h2>🔥 Tiến Độ Lập Trình</h2>
+        <section id="progress">
+            <h2 id="title-progress">🔥 Tiến Độ Lập Trình</h2>
             <div class="repo-card" style="text-align: center;">
-                <p style="color: var(--text-sub);">Số bài tập đã hoàn thành & commit lên GitHub hôm nay:</p>
+                <p style="color: var(--text-sub);" id="desc-progress">Số bài tập đã hoàn thành & commit lên GitHub hôm nay:</p>
                 <h1 id="count" style="font-size: 3rem; color: var(--accent-color); margin: 10px 0; font-family: 'Fira Code', monospace;">0</h1>
-                <button onclick="increase()" class="btn-link" style="cursor: pointer; background-color: var(--accent-color); color: #000; border: none;">
+                <button onclick="increase()" class="btn-link" style="cursor: pointer; background-color: var(--accent-color); color: #000; border: none;" id="btn-progress">
                     +1 Bài Hoàn Thành
                 </button>
             </div>
@@ -266,17 +367,143 @@
 
         <!-- Footer -->
         <footer>
-            <p>© HGGMco15 • Powered by GitHub Pages</p>
+            <p id="footer-text">© HGGMco15 • Vận hành bởi GitHub Pages</p>
         </footer>
     </div>
 
-    <!-- JavaScript -->
+    <!-- JavaScript: Đếm số bài & Chuyển đổi ngôn ngữ TOÀN BỘ trang -->
     <script>
+        // Khai báo biến toàn cục
         let counter = 0;
+        let currentLang = 'vi';
+        window.currentLang = 'vi';
+
         function increase() {
             counter++;
             document.getElementById('count').innerText = counter;
         }
+
+        const translations = {
+            vi: {
+                langBtn: "🇻🇳 VI",
+                heroBadge: "Trang Cá Nhân Lập Trình",
+                heroSubtitle: "Kho Lời Giải Lập Trình Thi Đấu & Thuật Toán",
+                navSkills: "Kỹ Năng",
+                navCf: "Codeforces",
+                navLc: "LeetCode",
+                navProgress: "Tiến Độ",
+                titleSkills: "💻 Kỹ Năng & Công Cụ",
+                titleCf: "📚 Lời Giải Codeforces",
+                statusCf: "Công khai",
+                descCf: "Kho lưu trữ toàn bộ lời giải các bài tập Codeforces được viết tối ưu bằng Python 3, C++. Tự động cập nhật các thuật toán Toán học, Cấu trúc dữ liệu và Tìm kiếm.",
+                linkCf: "🔗 Truy cập Repository trên GitHub ↗",
+                titleCfFeatured: "Nổi bật: Codeforces 1624B - Make AP",
+                descCfFeatured: "Giải quyết bài toán kiểm tra Cấp số cộng bằng thuật toán O(1) Toán học, xử lý triệt để điều kiện chia hết và trường hợp số lẻ (a+c)\\2==0.",
+                titleLc: "📚 Lời Giải LeetCode",
+                statusLc: "Công khai",
+                descLc: "Kho lưu trữ toàn bộ lời giải các bài tập Leetcode được viết tối ưu bằng Python 3, C++. Tự động cập nhật các thuật toán Toán học, Cấu trúc dữ liệu và Tìm kiếm.",
+                linkLc: "🔗 Truy cập Repository trên GitHub ↗",
+                titleProgress: "🔥 Tiến Độ Lập Trình",
+                descProgress: "Số bài tập đã hoàn thành & commit lên GitHub hôm nay:",
+                btnProgress: "+1 Bài Hoàn Thành",
+                footerText: "© HGGMco15 • Vận hành bởi GitHub Pages",
+                themeBtnMoss: "🌲 Nền: Rêu",
+                themeBtnBlack: "🖤 Nền: Đen"
+            },
+            en: {
+                langBtn: "🇬🇧 EN",
+                heroBadge: "Developer Portfolio",
+                heroSubtitle: "Competitive Programming Solutions & Algorithms Hub",
+                navSkills: "Skills",
+                navCf: "Codeforces",
+                navLc: "LeetCode",
+                navProgress: "Progress",
+                titleSkills: "💻 Skills & Tools",
+                titleCf: "📚 Codeforces Solutions",
+                statusCf: "Public",
+                descCf: "Repository of optimized solutions for Codeforces problems written in Python 3 and C++. Continuously updated with Math, Data Structures, and Search algorithms.",
+                linkCf: "🔗 Visit Repository on GitHub ↗",
+                titleCfFeatured: "Featured: Codeforces 1624B - Make AP",
+                descCfFeatured: "Solved Arithmetic Progression verification using O(1) mathematical algorithms, handling divisibility conditions and odd cases.",
+                titleLc: "📚 LeetCode Solutions",
+                statusLc: "Public",
+                descLc: "Repository of optimized solutions for LeetCode problems written in Python 3 and C++. Continuously updated with Data Structures and Algorithms.",
+                linkLc: "🔗 Visit Repository on GitHub ↗",
+                titleProgress: "🔥 Coding Progress",
+                descProgress: "Number of problems solved & committed to GitHub today:",
+                btnProgress: "+1 Problem Solved",
+                footerText: "© HGGMco15 • Powered by GitHub Pages",
+                themeBtnMoss: "🌲 Theme: Moss",
+                themeBtnBlack: "🖤 Theme: Dark"
+            }
+        };
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'vi' ? 'en' : 'vi';
+            window.currentLang = currentLang; // Cập nhật biến global cho PyScript
+            const langData = translations[currentLang];
+
+            // Cập nhật Navbar & Header
+            document.getElementById('lang-btn').innerText = langData.langBtn;
+            document.getElementById('hero-badge').innerText = langData.heroBadge;
+            document.getElementById('hero-subtitle').innerText = langData.heroSubtitle;
+            document.getElementById('nav-skills').innerText = langData.navSkills;
+            document.getElementById('nav-cf').innerText = langData.navCf;
+            document.getElementById('nav-lc').innerText = langData.navLc;
+            document.getElementById('nav-progress').innerText = langData.navProgress;
+            
+            // Cập nhật Skills Section
+            document.getElementById('title-skills').innerText = langData.titleSkills;
+            
+            // Cập nhật Codeforces Section
+            document.getElementById('title-cf').innerText = langData.titleCf;
+            document.getElementById('status-cf').innerText = langData.statusCf;
+            document.getElementById('desc-cf').innerText = langData.descCf;
+            document.getElementById('link-cf').innerText = langData.linkCf;
+            document.getElementById('title-cf-featured').innerText = langData.titleCfFeatured;
+            document.getElementById('desc-cf-featured').innerText = langData.descCfFeatured;
+            
+            // Cập nhật LeetCode Section
+            document.getElementById('title-lc').innerText = langData.titleLc;
+            document.getElementById('status-lc').innerText = langData.statusLc;
+            document.getElementById('desc-lc').innerText = langData.descLc;
+            document.getElementById('link-lc').innerText = langData.linkLc;
+            
+            // Cập nhật Progress Section & Footer
+            document.getElementById('title-progress').innerText = langData.titleProgress;
+            document.getElementById('desc-progress').innerText = langData.descProgress;
+            document.getElementById('btn-progress').innerText = langData.btnProgress;
+            document.getElementById('footer-text').innerText = langData.footerText;
+
+            // Cập nhật văn bản nút PyScript theo ngôn ngữ hiện tại
+            const themeBtn = document.getElementById("theme-btn");
+            if (window.isMossTheme !== undefined) {
+                themeBtn.innerText = window.isMossTheme ? langData.themeBtnMoss : langData.themeBtnBlack;
+            } else {
+                themeBtn.innerText = langData.themeBtnMoss;
+            }
+        }
+    </script>
+
+    <!-- Python (PyScript) Xử Lý Nền -->
+    <script type="py">
+        from js import document, window
+
+        window.isMossTheme = True
+
+        def toggle_theme(event):
+            btn = document.getElementById("theme-btn")
+            # Dùng getattr an toàn để tránh lỗi AttributeError
+            current_lang = getattr(window, 'currentLang', 'vi')
+            
+            if window.isMossTheme:
+                document.body.style.background = "#0d1117"
+                btn.innerText = "🖤 Theme: Dark" if current_lang == 'en' else "🖤 Nền: Đen"
+                window.isMossTheme = False
+            else:
+                document.body.style.background = "linear-gradient(135deg, #132219 0%, #0d1117 100%)"
+                btn.innerText = "🌲 Theme: Moss" if current_lang == 'en' else "🌲 Nền: Rêu"
+                window.isMossTheme = True
     </script>
 </body>
 </html>
